@@ -1,3 +1,11 @@
+var gameTable = Array();
+var ctx;
+var canvasWidth = 800;
+var canvasHeight = 800;
+var boxWidth;
+var boxHeight;
+var margin = 105;
+
 //document load
 $(document).ready(function() {
     loadInitialData();
@@ -23,10 +31,9 @@ function processRound(){
 	
 }
 function showCurrentPlayer(){
-	
-}
 
 }
+
 
 /**
  * loadGameTable()
@@ -35,10 +42,10 @@ function showCurrentPlayer(){
  *      Finally, calls the paint function to draw on canvas
  */
 function loadGame() {
-	canvasWidth = 640;
-  	canvasHeight = 640;
+	canvasWidth = 896;
+  	canvasHeight = 896;
     //resets the canvas and the game table
-    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    ctx.clearRect(0,0, canvasWidth, canvasHeight);
     gameTable = [];
     
     //picks measures and validates it
@@ -47,14 +54,16 @@ function loadGame() {
     
     //generates the game table
     for (var i=0; i<boxWidth; i++) {
+    	
         gameTable[i] = []; 
         for (var j=0; j<boxHeight; j++) {
+        	console.log("dentro for");
             var b = new Box();
-            b.construct(ctx,j*boxHeight, i*boxWidth, boxWidth, boxHeight, "silver");
+            b.construct(j*boxHeight, i*boxWidth, boxWidth, boxHeight, "black");
             b.paint();
             gameTable[i][j] = b;                        
         }
     }
-    game = new Game(gameTable);
+    //game = new Game(gameTable);
 }
 
